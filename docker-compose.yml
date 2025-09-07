@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  exchangerate-api:
+    image: vasiliskhub/exchange-rate-api:latest   # << use the image you push in CI
+    pull_policy: always                            # always fetch the newest digest
+    container_name: exchangerate-api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      Logging__LogLevel__Default: Information
+      Logging__LogLevel__Microsoft.AspNetCore: Warning
+    ports:
+      - "18080:8080"     # hit http://<server-ip>:18080
+    networks:
+      - kvblog_backend
+    restart: unless-stopped
+
+networks:
+  kvblog_backend:
+    external: true
