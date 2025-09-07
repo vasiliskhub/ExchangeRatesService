@@ -17,7 +17,7 @@ public class CnbCacheStrategyTests
         {
             Assert.That(options.Duration, Is.GreaterThan(TimeSpan.Zero));
             Assert.That(options.FailSafeMaxDuration, Is.GreaterThan(TimeSpan.Zero));
-            Assert.That(options.FailSafeMaxDuration.Ticks, Is.EqualTo(options.Duration.Ticks * 2));
+            Assert.That(options.FailSafeMaxDuration.Ticks, Is.EqualTo(options.Duration.Ticks));
         });
     }
 
@@ -43,6 +43,6 @@ public class CnbCacheStrategyTests
         var options = CnbCacheStrategy.GetCacheOptionsBasedOnPragueTime();
 
         // Assert
-        Assert.That(options.FailSafeMaxDuration.Ticks, Is.EqualTo(options.Duration.Ticks * 2));
+        Assert.That(options.FailSafeMaxDuration.Ticks, Is.EqualTo(options.Duration.Ticks));
     }
 }
